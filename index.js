@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('YOUR-API-KEY-HERE');
+const newsapi = new NewsAPI('44534792b79a4672a9356bf8a45eb3b3');
 const server = express();
 
 server.use(bodyParser.urlencoded({
@@ -14,8 +14,8 @@ server.use(bodyParser.json());
 server.get('/news', function (req, res) {
     const query = req.query.query;
     newsapi.v2.topHeadlines({
-        q: query || 'chatbots',
-        sources: 'abc-news, al-jazeera-english, bbc-news, bbc-sport, bloomberg, business-insider, business-insider-uk, buzzfeed, cbs-news, cnbc, cnn, crypto-coins-news, daily-mail, el-mundo, engadget, entertainment-weekly, espn, espn-cric-info, financial-times, fortune, fox-news, fox-sports, hacker-news, independent, info-money, liberation, mashable, mirror, mtv-news, mtv-news-uk, national-geographic, nbc-news, news24, newsweek, new-york-magazine, reuters, techcrunch, techradar, the-economist, the-globe-and-mail, the-guardian-au, the-guardian-uk, the-hindu, the-huffington-post, the-lad-bible, the-new-york-times, the-next-web, the-telegraph, the-times-of-india, the-verge, the-wall-street-journal, the-washington-post, time, usa-today, wired',
+        q: query || 'dogs',
+        sources: 'abc-news, buzzfeed, cbs-news, cnbc, cnn, daily-mail, entertainment-weekly, espn, fox-news, nbc-news, the-wall-street-journal, the-washington-post, time, usa-today',
     }).then(response => {
         let responseToSend;
         if (response.status === 'ok' && response.articles.length > 0) {
