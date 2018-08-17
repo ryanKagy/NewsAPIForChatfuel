@@ -14,7 +14,7 @@ server.use(bodyParser.json());
 server.get('/news', function (req, res) {
     const query = req.query.query;
     newsapi.v2.topHeadlines({
-        q: query || 'dogs',
+        q: query || 'dog',
         sources: 'abc-news, buzzfeed, cbs-news, cnbc, cnn, daily-mail, entertainment-weekly, espn, fox-news, nbc-news, the-wall-street-journal, the-washington-post, time, usa-today',
     }).then(response => {
         let responseToSend;
@@ -51,7 +51,7 @@ server.get('/news', function (req, res) {
         } else {
             responseToSend = {
                 "messages": [
-                    { "text": `Opps! Looks like I don't have any articles on ${query} as of now.` },
+                    { "text": `I couldn't find articles that match the exact search '${query}' - try a person's name, or a location, or a subject.` },
                     { "text": "Please feel free to check back later or try searching for another topic." }
                 ]
             }
@@ -60,7 +60,7 @@ server.get('/news', function (req, res) {
     }, (error) => {
         responseToSend = {
             "messages": [
-                { "text": `Opps! Something went wrong while searching for articles on ${query}.` },
+                { "text": `Something went wrong while searching for articles on ${query}.` },
                 { "text": `Got this error: ${error}` }
             ]
         }
